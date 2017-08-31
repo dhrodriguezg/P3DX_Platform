@@ -1,0 +1,67 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- A ground plane -->
+    <!-- include>
+      <uri>model://ground_plane</uri>
+    </include -->
+  <model name="ground_plane">
+    <static>true</static>
+    <link name="link">
+      <pose>0.0 0.0 -0.001 0.0 0.0 0.0</pose>
+      <collision name="collision">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>100 100</size>
+          </plane>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+          </friction>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <cast_shadows>false</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>100 100</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+
+    <!-- The Willow Garaga offices -->
+    <include>
+      <uri>model://willowgarage</uri>
+    </include>
+
+    <!-- Focus camera on tall pendulum -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>-6.67577 -7.3426 7.2367 0 0.591643 0.68419</pose>
+        <!-- pose>4.927360 -4.376610 3.740080 0.000000 0.275643 2.356190</pose -->
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>
